@@ -1,0 +1,11 @@
+<?php
+class DBInfo
+{
+    public $host="bmetis2";
+    public $database="operator_roster";
+    public $password="30Dec2010";
+    public $username="cstsang";
+
+    public function __construct(){}
+}
+?>

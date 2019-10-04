@@ -1,0 +1,97 @@
+<table id="rosterTable">
+  <thead id="rosterHeader">
+      <tr>
+        <td class="nameCell"></td>
+        <td class="alignCenter captionCell underlineText" colspan="31">Computer Operation Support Services Team Roster</td>
+        <td class="alignCenter totalHourCell"></td>
+        <td class="alignCenter actualHourCell"></td>
+        <td class="alignCenter lastMonthCell"></td>
+        <td class="alignCenter thisMonthCell"></td>
+        <td class="alignCenter totalCell"></td>
+        <td class="alignCenter shiftCountCell"></td>
+        <td class="alignCenter shiftCountCell"></td>
+        <td class="alignCenter shiftCountCell"></td>
+        <td class="alignCenter shiftCountCell"></td>
+        <td class="alignCenter noOfWorkingDayCell"></td>
+      </tr>
+      <tr>
+        <td class="nameCell"></td>
+        <td class="alignCenter captionCell underlineText selectRosterMonthCell" colspan="31">
+          <span (click)="prevMonth()" class="clickable"><&nbsp;&nbsp;</span>
+          {{ (this.monthlyCalendar)?.monthName}}
+          <span (click)="nextMonth()" class="clickable">&nbsp;&nbsp;></span>
+        </td>
+        <td colspan="10"></td>
+    </tr>
+    <tR>
+        <td class="nameCell borderCell">Holiday</td>
+        <td *ngFor="let dateObj of ((this.monthlyCalendar)?.dateObjList)|toArray" class="alignCenter phCell borderCell dateCell">
+            <span *ngIf=dateObj.isPublicHoliday>PH</span>
+        </td>
+        <td colspan="10" class="borderCell"></td>
+    </tR>
+    <tR>
+        <td class="nameCell borderCell">Days</td>
+        <td *ngFor="let dateObj of ((this.monthlyCalendar)?.dateObjList)|toArray;" class="alignCenter borderCell dateCell">
+          <span [class]="((dateObj.isPublicHoliday||(dateObj.dayOfWeek==0)||(dateObj.dayOfWeek==6))?'phCell':'')">
+            {{ this.weekDayNames[dateObj.dayOfWeek] }}
+          </span>
+        </td>
+        <td class="alignCenter totalHourCell borderCell" rowspan="2">Total<br>Hour</td>
+        <td class="alignCenter actualHourCell borderCell" rowspan="2">Actual<br>Hour</td>
+        <td class="borderCell alignCenter" colspan="8">Hour Off Due</td>
+    </tR>
+    <tr>
+      <td class="nameCell borderCell">Resident Support<br>Team Members</td>
+      <td *ngFor="let dateObj of ((this.monthlyCalendar)?.dateObjList)|toArray;let i =index" class="alignCenter borderCell dateCell">
+        <span *ngIf="(dateObj!='null')">{{ i+1 }}</span>
+      </td>
+      <td class="alignCenter lastMonthCell borderCell">Last<br>Month</td>
+      <td class="alignCenter thisMonthCell borderCell">This<br>Month</td>
+      <td class="alignCenter totalCell borderCell">Total</td>
+      <td class="alignCenter shiftCountCell borderCell">Total No. of <br>A Shift</td>
+      <td class="alignCenter shiftCountCell borderCell">Total No. of <br>Bx Shift</td>
+      <td class="alignCenter shiftCountCell borderCell">Total No. of <br>C Shift</td>
+      <td class="alignCenter shiftCountCell borderCell">Total No. of <br>Dx Shift</td>
+      <td class="alignCenter noOfWorkingDayCell borderCell">No. of <br>working<br>day</td>
+    </tr>
+  </thead>
+  <tbody app-roster-body [monthlyCalendar]="monthlyCalendar"></tbody>
+  <tfoot id="rosterFooter">
+    <tr>
+      <td colspan="44"><br></td>
+    </tr>
+    <tr>
+      <td colspan="11" class="aShiftColor">a : 0800H - 1700H</td>
+      <td colspan="21" rowspan="10" id="autoScheduler" style="vertical-align: top;"></td>
+      <td colspan="10" rowspan="20" id="yearlyStat" style="vertical-align: top;"></td>
+    </tr>
+    <tr>
+      <td colspan="11" class="bShiftColor">b : 1630H - 2215H</td>
+    </tr>
+    <tr>
+      <td colspan="11" class="bShiftColor">b1 : 1500H - 2215H</td>
+    </tr>
+    <tr>
+      <td colspan="11" class="cShiftColor">c : 2145H - 0830H (the next day)</td>
+    </tr>
+    <tr>
+      <td colspan="11" class="dShiftColor">d : 0800H - 1800H (on weekdays)</td>
+    </tr>
+    <tr>
+      <td colspan="11" class="dShiftColor">d1 : 0800H - 1700H (on weekdays)</td>
+    </tr>
+    <tr>
+      <td colspan="11" class="dShiftColor">d2 : 0900H - 1800H (on weekdays)</td>
+    </tr>
+    <tr>
+      <td colspan="11" class="dShiftColor">d3 : 0800H - 1648H (on weekdays)</td>
+    </tr>
+    <tr>
+      <td colspan="11" class="sickLeaveColor">s : sick leave standby</td>
+    </tr>
+    <tr>
+      <td colspan="11" class="oShiftColor">O : dayoff</td>
+    </tr>
+  </tfoot>
+</table>

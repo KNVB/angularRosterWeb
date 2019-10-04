@@ -1,0 +1,6 @@
+<tr app-itoroster-row *ngFor="let itoRoster of this.rosterList"
+  [id]="'shift_' + itoRoster.itoId"
+  [itoRoster]="itoRoster"
+  [noOfWorkingDay]="noOfWorkingDay"
+  [rosterRule]="rosterRule">
+</tr>
