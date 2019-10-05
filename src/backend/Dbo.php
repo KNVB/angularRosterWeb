@@ -88,7 +88,7 @@
         while ($row = $this->stmt->fetch(PDO::FETCH_ASSOC)) {
           $temp=$row["shift"];
           if (array_key_exists($row['d'],$shiftList)){
-            $temp=$shiftList[$row["d"]]."+".temp;
+            $temp=$shiftList[$row["d"]]."+".$temp;
           }
           $shiftList[$row["d"]]=$temp;
         }
