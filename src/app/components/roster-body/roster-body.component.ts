@@ -25,7 +25,7 @@ export class RosterBodyComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.transferObjectService.accessObj().pipe(take(1)).subscribe((res: MonthlyCalendar) => {
+    this.subscription = this.transferObjectService.accessObj().subscribe((res: MonthlyCalendar) => {
       this.noOfWorkingDay = res.noOfWorkingDay;
       this.year = res.year;
       this.month = res.month;
