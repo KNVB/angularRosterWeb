@@ -1,10 +1,10 @@
 <?php
 class DBInfo
 {
-    public $host="server";
-    public $database="roster";
-    public $password="30Dec2010";
-    public $username="cstsang";
+    public $host="f5vm9";
+    public $database="operator_roster";
+    public $password="f5P@ssword";
+    public $username="operator";
 
     public function __construct(){}
 }

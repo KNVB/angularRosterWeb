@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarService } from 'src/app/services/calendar.service';
+import { TransferObjectService } from 'src/app/services/transfer-object.service';
 import { MonthlyCalendar } from 'src/app/classes/monthly-calendar';
 
 @Component({
@@ -9,10 +10,9 @@ import { MonthlyCalendar } from 'src/app/classes/monthly-calendar';
 })
 export class RosterTableComponent implements OnInit {
   monthlyCalendar: MonthlyCalendar;
-
   weekDayNames = ['Su', 'M', 'T', 'W', 'Th', 'F', 'S'];
 
-  constructor(private calendarService: CalendarService) {
+  constructor(private calendarService: CalendarService, private transferObjectService: TransferObjectService) {
     this.getData(null, null);
   }
 
@@ -22,6 +22,7 @@ export class RosterTableComponent implements OnInit {
   getData(year: number, month: number) {
     this.calendarService.getMonthlyCalendar(year, month).subscribe((res: MonthlyCalendar) => {
       this.monthlyCalendar = res;
+      this.transferObjectService.sendObj(res);
     });
   }
 

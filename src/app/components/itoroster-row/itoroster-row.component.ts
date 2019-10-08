@@ -17,7 +17,7 @@ export class ITORosterRowComponent implements OnInit {
   }
   ngOnInit() {
   }
- 
+
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
     if ((this.itoRoster !== null) && (this.rosterRule !== null) && (this.noOfWorkingDay !== null)) {
       this.shiftCount.actualHour = this.getActualHour(this.itoRoster.shiftList, this.rosterRule);
