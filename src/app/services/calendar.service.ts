@@ -15,18 +15,11 @@ export class CalendarService {
     return this.http.get(this.env.apiUrl + 'getCurrentYearMonth.php').pipe(map((res: CurrentYearMonth) => res));
   }
   getMonthlyCalendar(year: number, month: number): Observable<MonthlyCalendar> {
-
-    if ((year == null) || (month == null)) {
-      return this.http.get(this.env.apiUrl + 'getMonthlyCalendar.php').pipe(map((res: MonthlyCalendar) => res));
-    } else {
-      const parameters = new HttpParams().set('year', year.toString()).set('month', month.toString());
-      return this.http.get(this.env.apiUrl + 'getMonthlyCalendar.php', {params: parameters}).pipe(map((res: MonthlyCalendar) => res));
+    const formData = new FormData();
+    if ((year !== null) || (month !== null)) {
+      formData.append('year', year.toString());
+      formData.append('month', month.toString());
     }
-    /*
-    return this.http.get('backend/getMonthlyCalendar.php', {params})
-    .pipe(map((res: MonthlyCalendar) =>{ console.log('service:' + JSON.stringify(res)); return res; })
-    //, catchError(this.handleError)
-    );
-    */
+    return this.http.post(this.env.apiUrl + 'getMonthlyCalendar.php', formData).pipe(map((res: MonthlyCalendar) => res));
   }
 }

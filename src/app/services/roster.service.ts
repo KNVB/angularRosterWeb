@@ -15,12 +15,20 @@ export class RosterService {
     return this.http.get(this.env.apiUrl + 'getRosterRule.php').pipe(map((res: RosterRule) => res));
   }
   getRosterList(year: number, month: number): Observable<ITORoster[]> {
+    const formData = new FormData();
+    if ((year !== null) || (month !== null)) {
+      formData.append('year', year.toString());
+      formData.append('month', month.toString());
+    }
+    return this.http.post(this.env.apiUrl + 'getRosterList.php', formData).pipe(map((res: ITORoster[]) => res));
+    /*
     if ((year == null) || (month == null)) {
       return this.http.get(this.env.apiUrl + 'getRosterList.php').pipe(map((res: ITORoster[]) => res));
     } else {
       const parameters = new HttpParams().set('year', year.toString()).set('month', month.toString());
       return this.http.get(this.env.apiUrl + 'getRosterList.php', {params: parameters}).pipe(map((res: ITORoster[]) => res));
     }
+    */
   }
 
 }

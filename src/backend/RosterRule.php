@@ -1,4 +1,5 @@
 <?php
+ require("Dbo.php");
  class RosterRule{
   private $dbo;
   public $essentialShiftList=[];
@@ -7,9 +8,10 @@
   public function __construct(){
 
     $escapChar=chr(27);
-
     $this->dbo=new Dbo();
     $result=$this->dbo->getRosterRule();
+
+
     $temp=$result["shiftList"][0];
     $temp=str_replace("essential".$escapChar,"",$temp);
     $this->essentialShiftList=explode(",",$temp);
@@ -20,6 +22,7 @@
       $tempArray=explode($escapChar,$value);
       $this->shiftHourCount[$tempArray[0]]= $tempArray[1];
     }
+
     $this->dbo->close();
   }
  }

@@ -5,10 +5,10 @@
   require("Roster.php");
   header('Content-Type: application/json; charset=utf-8');
 
-  if (isset($_GET["year"]) && isset($_GET["month"]))
+  if (isset($_POST["year"]) && isset($_POST["month"]))
   {
-    $year=intval ($_GET["year"]);
-    $month=intval ($_GET["month"]);
+    $year=intval ($_POST["year"]);
+    $month=intval ($_POST["month"]);
   }
   else
   {
