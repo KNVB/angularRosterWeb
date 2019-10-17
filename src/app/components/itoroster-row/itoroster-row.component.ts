@@ -19,7 +19,8 @@ export class ITORosterRowComponent implements OnInit {
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-    if ((this.itoRoster !== null) && (this.rosterRule !== null) && (this.noOfWorkingDay !== null)) {
+    if ((this.itoRoster !== undefined) && (this.rosterRule !== undefined) && (this.noOfWorkingDay !== undefined)) {
+      console.log(this.rosterRule);
       this.shiftCount.actualHour = this.getActualHour(this.itoRoster.shiftList, this.rosterRule);
       this.shiftCount.totalHour = this.itoRoster.workingHourPerDay * this.noOfWorkingDay;
       this.shiftCount.lastMonthBalance = this.itoRoster.lastMonthBalance;
@@ -35,6 +36,7 @@ export class ITORosterRowComponent implements OnInit {
   private getActualHour(shiftList, rosterRule) {
     let actualHour = 0;
     Object.keys(shiftList).forEach((key) => {
+        console.log(rosterRule, this.rosterRule);
         if (shiftList[key] !== 'null') {
           actualHour += parseFloat(rosterRule.shiftHourCount[shiftList[key]]);
         }

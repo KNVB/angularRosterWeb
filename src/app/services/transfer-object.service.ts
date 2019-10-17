@@ -8,7 +8,7 @@ export class TransferObjectService {
   private subject = new Subject();
   constructor() { }
 
-  sendObj(obj) {
+  sendObj(obj: any) {
     this.subject.next(obj);
   }
 

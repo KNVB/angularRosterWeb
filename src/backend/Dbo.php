@@ -1,4 +1,5 @@
 <?php
+  require("DbInfo.php");
   class Dbo
 	{
 		private $conn;

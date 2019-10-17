@@ -4,7 +4,7 @@ import { ITORoster } from 'src/app/classes/itoroster';
 import { RosterRule } from 'src/app/classes/roster-rule';
 import { MonthlyCalendar } from 'src/app/classes/monthly-calendar';
 import { TransferObjectService } from 'src/app/services/transfer-object.service';
-
+import { take } from 'rxjs/operators';
 @Component({
   selector: '[app-roster-body]',
   templateUrl: './roster-body.component.html',
@@ -18,8 +18,7 @@ export class RosterBodyComponent implements OnInit, OnDestroy {
   rosterRule: RosterRule;
   subscription;
   constructor(private rosterService: RosterService,
-              private transferObjectService: TransferObjectService,
-              private transferObjectService2: TransferObjectService) {
+              private transferObjectService: TransferObjectService) {
     this.rosterService.getRosterRule().subscribe((res: RosterRule) => {
       this.rosterRule = res;
     });
@@ -31,7 +30,6 @@ export class RosterBodyComponent implements OnInit, OnDestroy {
       this.year = res.year;
       this.month = res.month;
       this.getRosterList();
-
     });
   }
 
